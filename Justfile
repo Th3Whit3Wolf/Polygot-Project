@@ -230,12 +230,12 @@ ex exercise=default_exercise:
 Docs:
 	#!/bin/bash
 	if [ -d "Z_Docs" ];then
-		{{wget}} https://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
+		{{wget}} https://www.programmer-books.com/wp-content/uploads/2018/12/learn-python-3-hard-way.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
 		{{wget}} https://arisuchan.jp/%CE%BB/src/1524899631243.pdf -O Z_Docs/Learn-C-the-Hard-Way.pdf
 		{{wget}} https://rubytalk.org/uploads/default/original/2X/0/01f3ed55777452f4b7bddf0e1438706baba35418.pdf -O Z_Docs/Learn-Ruby-the-Hard-Way.pdf 
 	else
 		mkdir Z_Docs
-		{{wget}} https://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
+		{{wget}} https://www.programmer-books.com/wp-content/uploads/2018/12/learn-python-3-hard-way.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
 		{{wget}} https://arisuchan.jp/%CE%BB/src/1524899631243.pdf -O Z_Docs/Learn-C-the-Hard-Way.pdf
 		{{wget}} https://rubytalk.org/uploads/default/original/2X/0/01f3ed55777452f4b7bddf0e1438706baba35418.pdf -O Z_Docs/Learn-Ruby-the-Hard-Way.pdf
 	fi
