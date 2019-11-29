@@ -17,7 +17,7 @@ By converting exercises in the books down below into the languages above.
 
 ## Books (Download)
 
-* [Learn Python3 the Hard Way](http://ptgmedia.pearsoncmg.com/images/9780134123486/samplepages/9780134123486_exercises%206and40.pdf)
+* [Learn Python3 the Hard Way](https://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf)
 * [Learn C the Hard Way](https://arisuchan.jp/%CE%BB/src/1524899631243.pdf) 
 * [Learn Ruby the Hard Way](https://rubytalk.org/uploads/default/original/2X/0/01f3ed55777452f4b7bddf0e1438706baba35418.pdf)
 

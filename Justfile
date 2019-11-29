@@ -1,5 +1,6 @@
 default_size		:= "words"
 default_exercise	:= "-h"
+wget				:= "wget -q --show-progress"
 
 # Compile all compiled languages
 build:
@@ -115,6 +116,61 @@ ex exercise=default_exercise:
 		SWIFT_BIN=$(du -h Swift/ex{{exercise}} | awk '{print $1}')
 	fi
 
+	declare -a arr=(
+		"The Setup"
+		"A Good First Program"
+		"Numbers and Math"
+		"Variables and Names"
+		"More Variables and Printing"
+		"Strings and Text"
+		"More Printing"
+		"Printing, Printing"
+		"Printing, Printing, Printing"
+		"What Was That"
+		"Asking Questions"
+		"Prompting People"
+		"Parameters, Unpacking, Variables"
+		"Prompting and Passing"
+		"Reading Files"
+		"Reading and Writing Files"
+		"More Files"
+		"Name, Variables, Code, Functions"
+		"Functions and Variables"
+		"Functions and Files"
+		"Functions Can Return Something"
+		"What Do You Know So Far"
+		"Strings, Bytes, and Charater Encodings"
+		"More Practice"
+		"Even More Practice"
+		"Congratulations, Take a Test!"
+		"Memorizing Logic"
+		"Boolean Practice"
+		"What if"
+		"Else and If"
+		"Making Decisions"
+		"Loops and Lists"
+		"While Loops"
+		"Accessing Elements of Lists"
+		"Branches and Functions"
+		"Designing and Debugging"
+		"Symbol Review"
+		"Doing Things to Lists"
+		"Dictionaries, Oh Lovely Dictionaries"
+		"Modules, Classes, and Objects"
+		"Learning to Speak Object-Oriented"
+		"Is-A, Has-A, Objects, and Classes"
+		"Basic Object-Oriented Analysis"
+		"Inheritance versus Composition"
+		"You Make a Game"
+		"A Project Skeleton"
+		"Automated Testing"
+		"Advanced User Input"
+		"Making Sentences"
+		"Your First Website"
+		"Getting Input from a Browser"
+		"The Start of Your Web Game"
+	)
+
 	case {{exercise}} in
 		''|*[!0-9]*)
 			echo "USAGE:"
@@ -124,41 +180,62 @@ ex exercise=default_exercise:
 			echo "    <exercise>    exercise as number (example 11)"
 			;;
 		*)
-			echo "Exercise {{exercise}}"
-			echo
-			echo "┌─────────────────────────────────────────────────────────────┐"
-			cat C/ex{{exercise}}.c | wc | awk '{print "│   C:         " $1 " lines, " $2 " words, & " $3 " bytes" }' 
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $C_BIN"
-			echo "│"
-			cat Cpp/ex{{exercise}}.cpp | wc | awk     '{print "│   Cpp:       " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $CPP_BIN"
-			echo "│"
-			cat D/ex{{exercise}}.d | wc | awk         '{print "│   D:         " $1 " lines, " $2 " words, & " $3 " bytes"}'
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $D_BIN" 
-			echo "│"
-			cat Dart/ex{{exercise}}.dart | wc | awk   '{print "│   Dart:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			cat Go/ex{{exercise}}.go | wc | awk       '{print "│   Go:        " $1 " lines, " $2 " words, & " $3 " bytes"}'
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $GO_BIN"  
-			echo "│"
-			cat Nim/ex{{exercise}}.nim | wc | awk     '{print "│   Nim:       " $1 " lines, " $2 " words, & " $3 " bytes"}'
-			echo "│   ├───────────────────────────────────────────" 
-			echo "│   └─ Binary Size: $NIM_BIN" 
-			echo "│"
-			cat Python/ex{{exercise}}.py | wc | awk   '{print "│   Python:    " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			echo "│"
-			cat Ruby/ex{{exercise}}.rb | wc | awk     '{print "│   Ruby:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			echo "│"
-			cat Rust/ex{{exercise}}.rs | wc | awk     '{print "│   Rust:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $RUST_BIN" 
-			echo "│"
-			cat Swift/ex{{exercise}}.swift | wc | awk '{print "│   Swift:     " $1 " lines, " $2 " words, & " $3 " bytes"}' 
-			echo "│   ├───────────────────────────────────────────"
-			echo "│   └─ Binary Size: $SWIFT_BIN" 
-			echo "└─────────────────────────────────────────────────────────────┘"
+			if (( {{exercise}}<=0 || {{exercise}}>=53)); then
+				echo "USAGE:"
+				echo "    just ex [<exercise>]"
+				echo ""
+				echo "ARGS:"
+				echo "    <exercise>    exercise as number (between 1 & 52)"
+			else
+				echo "Exercise {{exercise}} - ${arr[{{exercise}}]}"
+				echo
+				echo "┌─────────────────────────────────────────────────────────────┐"
+				cat C/ex{{exercise}}.c | wc | awk '{print "│   C:         " $1 " lines, " $2 " words, & " $3 " bytes" }' 
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $C_BIN"
+				echo "│"
+				cat Cpp/ex{{exercise}}.cpp | wc | awk     '{print "│   Cpp:       " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $CPP_BIN"
+				echo "│"
+				cat D/ex{{exercise}}.d | wc | awk         '{print "│   D:         " $1 " lines, " $2 " words, & " $3 " bytes"}'
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $D_BIN" 
+				echo "│"
+				cat Dart/ex{{exercise}}.dart | wc | awk   '{print "│   Dart:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				cat Go/ex{{exercise}}.go | wc | awk       '{print "│   Go:        " $1 " lines, " $2 " words, & " $3 " bytes"}'
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $GO_BIN"  
+				echo "│"
+				cat Nim/ex{{exercise}}.nim | wc | awk     '{print "│   Nim:       " $1 " lines, " $2 " words, & " $3 " bytes"}'
+				echo "│   ├───────────────────────────────────────────" 
+				echo "│   └─ Binary Size: $NIM_BIN" 
+				echo "│"
+				cat Python/ex{{exercise}}.py | wc | awk   '{print "│   Python:    " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				echo "│"
+				cat Ruby/ex{{exercise}}.rb | wc | awk     '{print "│   Ruby:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				echo "│"
+				cat Rust/ex{{exercise}}.rs | wc | awk     '{print "│   Rust:      " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $RUST_BIN" 
+				echo "│"
+				cat Swift/ex{{exercise}}.swift | wc | awk '{print "│   Swift:     " $1 " lines, " $2 " words, & " $3 " bytes"}' 
+				echo "│   ├───────────────────────────────────────────"
+				echo "│   └─ Binary Size: $SWIFT_BIN" 
+				echo "└─────────────────────────────────────────────────────────────┘"
+			fi
 		;;
 	esac
+
+Docs:
+	#!/bin/bash
+	if [ -d "Z_Docs" ];then
+		{{wget}} https://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
+		{{wget}} https://arisuchan.jp/%CE%BB/src/1524899631243.pdf -O Z_Docs/Learn-C-the-Hard-Way.pdf
+		{{wget}} https://rubytalk.org/uploads/default/original/2X/0/01f3ed55777452f4b7bddf0e1438706baba35418.pdf -O Z_Docs/Learn-Ruby-the-Hard-Way.pdf 
+	else
+		mkdir Z_Docs
+		{{wget}} https://files.meetup.com/18552511/Learn%20Python%20The%20Hard%20Way%203rd%20Edition%20V413HAV.pdf -O Z_Docs/Learn-Python3-the-Hard-Way.pdf
+		{{wget}} https://arisuchan.jp/%CE%BB/src/1524899631243.pdf -O Z_Docs/Learn-C-the-Hard-Way.pdf
+		{{wget}} https://rubytalk.org/uploads/default/original/2X/0/01f3ed55777452f4b7bddf0e1438706baba35418.pdf -O Z_Docs/Learn-Ruby-the-Hard-Way.pdf
+	fi
